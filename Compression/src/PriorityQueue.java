@@ -4,16 +4,16 @@ A basic queue that sorts items based on priority
  */
 
 public class PriorityQueue {
-  private QueueNode head = new QueueNode();
+  private Node<BinaryTreeNode> head = new Node<BinaryTreeNode>();
   PriorityQueue(){}
 
   public void enqueue(BinaryTreeNode value){
-    QueueNode item = new QueueNode(value);
+    Node<BinaryTreeNode> item = new Node<BinaryTreeNode>(value);
     if(head.getNext() == null){
       head.setNext(item);
       return;
     }
-    QueueNode tempNode = head;
+    Node<BinaryTreeNode> tempNode = head;
     while(tempNode.getNext() != null && value.compareTo(tempNode.getNext().getValue()) > 0){
       tempNode = tempNode.getNext();
     }
@@ -27,7 +27,7 @@ public class PriorityQueue {
     }
 
     BinaryTreeNode output = head.getNext().getValue();
-    QueueNode nextNode = head.getNext().getNext();
+    Node nextNode = head.getNext().getNext();
     head.setNext(nextNode);
     return output;
   }
