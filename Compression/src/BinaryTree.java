@@ -36,22 +36,33 @@ public class BinaryTree {
         } while(!complete);
 
         root.setRightNode(nodeQueue.dequeue());
-        treeLined = getBinary(root.getRightNode(), "");
-
+        treeLined = lineify(root.getRightNode());
+        getBinary(root.getRightNode(), "");
     }
 
-    private String getBinary(BinaryTreeNode refNode, String prev){
-        if(refNode.getLeftNode() != null && refNode.getRightNode() != null){
-            String left = getBinary(refNode.getLeftNode(), "0");
-            String right = getBinary(refNode.getRightNode(), "1");
-            return "(" +  left + " " + right + ")";
-        } else if(refNode.getLeftNode() != null){
-            return getBinary(refNode.getLeftNode(), prev + "0");
-        } else if(refNode.getRightNode() != null){
-            return getBinary(refNode.getRightNode(), prev + "1");
-        } else {
-            binaryValue[refNode.getCharacter()] = prev;
+    private String lineify(BinaryTreeNode refNode){
+        if(refNode.isLeaf()){
             return Integer.toString((char)refNode.getCharacter());
+        } else if(refNode.getRightNode() == null) {
+            return lineify(refNode.getLeftNode());
+        } else if(refNode.getLeftNode() == null) {
+            return lineify(refNode.getRightNode());
+        } else{
+            String left = lineify(refNode.getLeftNode());
+            String right = lineify(refNode.getRightNode());
+            return "(" +  left + " " + right + ")";
+        }
+    }
+
+    private void getBinary(BinaryTreeNode refNode, String prev){
+        if(refNode.isLeaf()){
+            binaryValue[refNode.getCharacter()] = prev;
+        }
+        if(refNode.getLeftNode() != null){
+            getBinary(refNode.getLeftNode(), prev + "0");
+        }
+        if(refNode.getRightNode() != null){
+            getBinary(refNode.getRightNode(), prev + "1");
         }
     }
 
