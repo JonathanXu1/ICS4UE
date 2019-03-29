@@ -1,0 +1,11 @@
+1/A     Sue Flay
+2/B     Blanche Dwight
+3/C     Kitty Litter
+4/D     Vic Torius
+5/E     Chuck Roste
+6/F     Bunsen Berner
+7/G     Ivan Oder
+8/H     Kay Largo
+9/I     Charity Ball
+10/J    Arty Choake
+11/K    Cookie Baker
