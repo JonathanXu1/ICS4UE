@@ -4,41 +4,39 @@ import java.util.List;
 
 public class BinaryTree {
     private BinaryTreeNode root = new BinaryTreeNode(0);
-    private PriorityQueue nodeQueue = new PriorityQueue();
+    private List<BinaryTreeNode> nodeList = new ArrayList<BinaryTreeNode>();
     private String[] binaryValue = new String[256];
 
     BinaryTree(int[] charList) {
         for(int i = 0; i < 256; i++){
             if(charList[i] != 0){
                 BinaryTreeNode newNode = new BinaryTreeNode(i, charList[i]);
-                //nodeList.add(newNode);
-                nodeQueue.enqueue(newNode);
+                nodeList.add(newNode);
             }
         }
+        /*
+        for(int i = 0; i < nodeList.size(); i++){
+            System.out.println((char)nodeList.get(i).getCharacter() + " " + nodeList.get(i).getWeight());
+        }*/
 
-        boolean complete = false;
-        do{
-            if(nodeQueue.isEmpty()){
-                complete = true;
-            }
-            BinaryTreeNode left = nodeQueue.dequeue();
-            if(nodeQueue.isEmpty()){
-                nodeQueue.enqueue(left);
-                complete = true;
-            }
-            BinaryTreeNode right = nodeQueue.dequeue();
-            BinaryTreeNode parentNode = new BinaryTreeNode(left.getWeight() + right.getWeight());
-            parentNode.setLeftNode(left);
-            parentNode.setRightNode(right);
-            if(!nodeQueue.isEmpty()){
-                nodeQueue.enqueue(parentNode);
-            } else {
-                nodeQueue.enqueue(parentNode);
-                complete = true;
-            }
-        } while(!complete);
+        Collections.sort(nodeList);
 
-        root.setRightNode(nodeQueue.dequeue());
+        while(nodeList.size() > 1){
+            /*
+            for(int i = 0; i < nodeList.size(); i++){
+                System.out.println((char)nodeList.get(i).getCharacter() + " " + nodeList.get(i).getWeight());
+            } */
+            BinaryTreeNode parentNode = new BinaryTreeNode(nodeList.get(0).getWeight() + nodeList.get(1).getWeight());
+            parentNode.setLeftNode(nodeList.get(0));
+            parentNode.setRightNode(nodeList.get(1));
+            nodeList.remove(0);
+            nodeList.remove(0);
+
+            nodeList.add(parentNode);
+            Collections.sort(nodeList);
+        }
+
+        root.setRightNode(nodeList.get(0));
         getBinary(root.getRightNode(), "");
     }
 
