@@ -1,25 +1,53 @@
-public class Node<T> {
-  private T value = null;
-  private Node<T> next = null;
+/*
+  Node
+  A node used for the priority queue
+  @author Jonathan Xu
+  March 23, 2019
+ */
 
+public class Node {
+  private BinaryTreeNode value = null;
+  private Node next = null;
+
+  /*
+    Node
+    Constructor with no arguments creates a node of value null
+  */
   Node(){}
-  Node(T value){
+
+  /*
+    Node
+    Constructor that initializes value of node
+    @param value The initial value of the node
+  */
+  Node(BinaryTreeNode value){
     this.value = value;
   }
 
-  public Node<T> getNext(){
+  /*
+    getNext
+    Returns the next node
+    @return The next node
+   */
+  public Node getNext(){
     return this.next;
   }
 
-  public void setNext(Node<T> next){
+  /*
+    setNext
+    Sets the next node
+    @param next The next node
+   */
+  public void setNext(Node next){
     this.next = next;
   }
 
-  public T getValue(){
+  /*
+    getValue
+    Returns the BinaryTreeNode saved in the node
+    @return The node's value
+   */
+  public BinaryTreeNode getValue(){
     return this.value;
-  }
-
-  public void setValue(T value){
-    this.value = value;
   }
 }

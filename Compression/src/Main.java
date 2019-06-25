@@ -1,7 +1,7 @@
 /*
 Compression Assignment
 Takes a file and compresses it with Huffman Encoding
-Jonathan Xu
+@author Jonathan Xu
 March 20, 2019
  */
 
@@ -14,7 +14,9 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) throws IOException {
+    // Declaring an array of ints to store occurences of each character
     int[] charList = new int[256];
+    // A string to store the binary output of the tree
     StringBuilder binaryString = new StringBuilder();
 
     // Takes user input for file name
@@ -38,7 +40,7 @@ public class Main {
     //Debugging for time taken
     long start = System.currentTimeMillis();
 
-    //System.out.println("Loading file");
+    // Loading file
     BufferedInputStream in = new BufferedInputStream(new FileInputStream(infile));
     BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(outfile));
 
@@ -50,7 +52,6 @@ public class Main {
     in.close();
 
     //Print filename
-    //System.out.println("Printing filename");
     infile = infile.toUpperCase();
     for (int i = 0; i < infile.length(); i++) {
       out.write((int) infile.charAt(i));
@@ -58,8 +59,7 @@ public class Main {
     out.write((int) '\r');
     out.write((int) '\n');
 
-    //Printing tree
-    //System.out.println("Creating tree");
+    //Creating tree
     BinaryTree tree = new BinaryTree(charList);
     String treeLined = tree.getLined();
     for (int i = 0; i < treeLined.length(); i++) {
@@ -68,8 +68,6 @@ public class Main {
     }
     out.write((int) '\r');
     out.write((int) '\n');
-
-    //System.out.println("Encoding to binary");
 
     //Compressing
     in = new BufferedInputStream(new FileInputStream(infile));
@@ -91,20 +89,11 @@ public class Main {
       binaryString.append('0');
     }
 
-    //System.out.println("Writing compressed data");
-
+    // Convert binary to int
     for (int i = 0; i < binaryString.length(); i += 8) {
-      // Convert binary to int
-      int integerValue = 0;
-      for (int j = 0; j < 8; j++) {
-        if (binaryString.charAt(i + j) == '1') {
-          integerValue += Math.pow(2, 7 - j);
-        }
-      }
-      out.write(integerValue);
+      out.write(Integer.parseInt(binaryString.substring(i, i+8), 2));
     }
 
-    //System.out.println("Compression complete");
     //Debugging for timing
     long finish = System.currentTimeMillis();
     long timeElapsed = finish - start;

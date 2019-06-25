@@ -48,44 +48,30 @@ class SimpleLinkedList<E> {
 
     public int indexOf(E item){
       Node<E> tempNode = head;
-      int size =  size();
-      for( int i = 0; i < size; i++){
+      int i = 0;
+
+      while(tempNode != null){
         if(tempNode.getItem().equals(item)){
           return i;
         }
+        tempNode = tempNode.getNext();
+        i++;
       }
       return -1;
     }
-    /*
-    public int indexOf(E item) {
-      if(head == null){
-        return -1;
-      }
 
-      Node<E> tempNode = head;
-      boolean found = false;
-      int index = -1;
-      int output = -1;
-
-      while(tempNode.getNext() != null && !found){
-        tempNode = tempNode.getNext();
-        index ++;
-        if(tempNode.getItem().equals(item)){
-          output = index;
-          found = true;
-        }
-      }
-      return output;
-    }
-    */
     public boolean remove(int index) {
       if(head == null){
         return false;
       }
+      if(index == 0){
+        head = head.getNext();
+        return true;
+      }
 
       Node<E> tempNode = head;
 
-      for(int i = 0; i < index; i++){
+      for(int i = 0; i < index-1; i++){
         tempNode = tempNode.getNext();
       }
 
@@ -93,17 +79,25 @@ class SimpleLinkedList<E> {
         Node<E> afterNode = tempNode.getNext().getNext();
 
         tempNode.setNext(afterNode);
+        return true;
       } else {
-        tempNode = null;
+        return false;
       }
-      return true;
     }
 
     public boolean remove(E item) {
+      if(head == null){
+        return false;
+      }
+      if(head.getItem().equals(item)){
+        head = head.getNext();
+        return true;
+      }
+
       Node<E> tempNode = head;
       boolean removed = false;
 
-      while(tempNode.getNext() != null){
+      while(!removed && tempNode.getNext() != null){
         if(tempNode.getNext().getItem().equals(item)){
           Node<E> afterNode = tempNode.getNext().getNext();
           tempNode.setNext(afterNode);

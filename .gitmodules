@@ -1,0 +1,9 @@
+[submodule "Chinese-Checkers"]
+	path = Chinese-Checkers
+	url = https://github.com/JonathanXu1/Chinese-Checkers
+[submodule "ICS4UE-Prom"]
+	path = ICS4UE-Prom
+	url = https://github.com/JonathanXu1/ICS4UE-Prom
+[submodule "ICS4UE-Summative"]
+	path = ICS4UE-Summative
+	url = https://github.com/JonathanXu1/ICS4UE-Summative

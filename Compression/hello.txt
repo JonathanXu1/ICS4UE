@@ -1,3 +1,5 @@
-This is a scam.
-No way it's encoding so fast.
-Holy smokes praise the lord if it really does work.
+This is a test file to compress.
+Line 1.
+Line 2.
+~!@#$%^&*()
+Cool beans.

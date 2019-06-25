@@ -12,7 +12,7 @@ class CompareSorts {
    /** Main method *******************************************
      * @param arguements
      */ 
-   public static void main(String[] args) {     
+   public static void cust() {
      
      int data[] = generateNumberArray(20);
      int[] tempArray; // a temp holder for data as it is passed to methods
@@ -276,7 +276,7 @@ class CompareSorts {
      * @param the unsorted integer array
      * @return the sorted integer array
      */
-   public static int[] quickSort(int[] snumbers) {
+   public static int[] quickSort(int[] numbers) {
      if(numbers.length <= 1){
        return  numbers;
      }
